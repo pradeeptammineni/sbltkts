@@ -441,6 +441,7 @@ background-color: #658AC3;
 		  'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']},
 		  'params' : { 'SWEExtData' : xmlInput } // Jive Connects will URI encode values for you
 		}).execute(function(response) {
+			console.log("Res: "+response);
 			if (!response.error) {
 						xmlDoc = response.content;
 						console.log(response.content);
