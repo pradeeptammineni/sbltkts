@@ -443,6 +443,7 @@ background-color: #658AC3;
 		}).execute(function(response) {
 			if (!response.error) {
 						xmlDoc = response.content;
+						console.log(response.content);
 						var json = $.xml2json(xmlDoc);
 						try 
 						{
