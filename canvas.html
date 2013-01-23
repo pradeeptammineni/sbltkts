@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org" />
+<link type="text/css" href="stylesheets/jquery-ui-1.8.16.custom.css" rel="stylesheet" /> 
+<style type="text/css">
+
+/*Reset*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ font: inherit;
+ vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+ display: block;
+}
+body {
+ line-height: 1;
+}
+ol, ul {
+ list-style: none;
+}
+blockquote, q {
+ quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+ content: '';
+ content: none;
+}
+table {
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+/*Reset Ends*/
+
+/*Jive style*/
+
+html, body { font-family : "Helvetica Neue",Helvetica,Arial,sans-serif; font-size:11px}
+a:link, a:visited { color:#658AC3}
+a:hover {text-decoration:none}
+
+/* tables */
+table.data-grid, table.crud, table.banner { border:1px solid #222; margin:20px; box-shadow:0 0 5px #888}
+table.data-grid {width:98%; table-layout:fixed; }
+table.data-grid thead tr th, table.crud thead tr th, table.banner thead tr th{ color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold}
+table.data-grid tbody tr td{ padding:2px; border-top:1px solid #222; cursor:default; position:relative; overflow: hidden; text-overflow:ellipsis; white-space:nowrap;}
+table.data-grid tbody tr:hover { background:#F8F8D2}
+table.data-grid tbody tr.active { background:#FFFF00; color:black}
+table.data-grid tbody tr.active a:link, table.data-grid tbody tr.active a:visited { color:#658AC3}
+
+table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
+	background-color: #658AC3;
+	border: 1px solid #222;
+}
+
+div.infoMsg, div.infoMsg2
+{
+	display:none;
+	font-weight:bold;
+}
+
+table.infoPager {
+	border:0px;
+}
+
+table.banner {
+	background-color: #12378B;
+	border: 1px solid #222;
+}
+table.data-grid thead tr .header {
+	background-image: url(images/bg.png);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.data-grid thead tr .headerSortUp {
+	background-image: url(images/asc.png);
+}
+table.data-grid thead tr .headerSortDown {
+	background-image: url(images/desc.png);
+}
+table.data-grid thead tr .headerSortDown, table.data-grid thead tr .headerSortUp {
+background-color: #12378B;
+}
+
+/* TD Background data in Canvas */
+td.noDiscuss {
+	background-image: url(images/discuss_no.png);
+}
+td.Discuss {
+	background-image: url(images/discuss_yes.png);
+}
+
+td.updateDays{
+	background-image: url(images/updatedays.png);
+}
+
+td.updateMins{
+	background-image: url(images/updatemins.png);
+}
+td.Severity1{
+	background-image: url(images/1critical.png);
+}
+td.Severity2{
+	background-image: url(images/2high.png);
+}
+td.Severity3{
+	background-image: url(images/3medium.png);
+}
+td.Severity4{
+	background-image: url(images/4low.png);
+}
+td.noDiscuss, td.Discuss, td.updateDays, td.updateMins, td.Severity1, td.Severity2, td.Severity3, td.Severity4
+{
+	background-repeat: no-repeat;
+	background-position: right;
+    position:relative; /*this is the key*/
+}
+.mmlib_table {
+    width: 100%;
+    font: bold 11px "Helvetica Neue", Helvetica, Verdana, "Trebuchet MS";
+}
+/* TD Background data in Canvas ends */
+
+a:link, a:visited { color:black}
+a:hover {text-decoration:none}
+
+.banner a:link, .banner a:visited{ color: white; font-weight:bold}
+.banner a:hover, .banner a.active:link, .banner a.active:visited {color: #ffff00; text-decoration:none}
+
+
+input, textarea { width:350px; padding:5px;}
+input.pagedisplay {width:60px; height:11px; font-size:10px; padding-left: 0pt; padding-top: 5pt; padding-bottom: 0pt; padding-right: 0pt; align:center; vertical-align:center;}
+
+textarea { height:100px}
+select {width:250px;}
+select.discussGroup {width:400px;}
+select.pagesize {width:40px;}
+
+table.crud tbody td { padding:8px; vertical-align:top}
+
+#pager img {margin: 0px 0px 0px 0px;}
+/* Button Styles - Start */
+.buttonRow {float: left; clear: both; margin: 1em 0; } /*single*/
+
+.button
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 10px;
+	padding-left: 10px;
+	
+	font-size: 9pt;
+	font-weight:bold;
+	text-decoration: none;
+	color: white;
+	background-color: #12378B;
+	
+	text-align: center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+}
+
+.button:hover
+{
+background-color: #658AC3;
+}
+.buttonSingle { width: 6em; float: left; clear: none; } /*holder*/
+.buttonStyle1 { color:#33f; background-color: #ccf; border:3px outset #009;  }
+.buttonStyle3 { font-size: 1em; padding: 0.10em; color:#009;}
+table.crud tbody td.button_row{ 
+text-align:center; vertical-align:center; margin: 1em 0; padding:0.3em;}
+/* Button Styles - End */
+
+div.menu
+{
+	background-color: #12378B;
+	border: 0px solid #222;
+	padding: 5px 0 0 5px;
+}
+div.menu a:link, div.menu a:visited{ display: inline-block; padding: 10px 20px; text-decoration: none; color: #12378B; font-weight:bold}
+div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { background: #E7E7F7; color: #12378B}
+
+.banner
+{
+padding: 0 0 0 0;
+}
+/* Jive Style ends */
+
+</style>
+  <title>My Siebel Service Requests - Canvas</title>
+</head>
+<!-- Other functionalities: Pagination, Sorting, Form for Discussion, Posting -->
+<body>
+
+<!-- Top Menu -->
+<div class="menu">
+	<a href="#" class="active">Service Requests</a>
+	<!--<a href="#" class="displayList active">Service Requests</a>-->
+	<!-- <a href="#" class="create">Create New</a> -->
+</div>
+
+<!-- Welcome Banner -->
+<table class="banner" width="98%">
+	<thead>
+		<tr>
+		<th width="50%">Welcome, <b><span id="userID"></span></b></th>
+		<th width="20%" align="right">
+		<form align="right"><!-- <img alt="List Service Requests" src="images/list.png" /> --><a class="displayList active" href="#" title="List Service Requests">List SRs</a><span>  |  </span><!-- <img alt="Create New Service Request" src="images/add.png"/> --><a class="create" href="#" title="Create New Service Request">Create New SR</a></form>
+		</th>
+		<th width="30%">
+		<!-- Pagination of the fetched records -->
+		<div id="pager" align="right" class="pager" style="display:none">
+			<form align="right">
+				<img src="images/first.png" class="first" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<img src="images/prev.png" class="prev" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<input type="text" class="pagedisplay" disabled="disabled"/>
+				<img src="images/next.png" class="next" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<img src="images/last.png" class="last" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				
+				<select class="pagesize" style="font-size:10px; padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option selected="selected" value="15">15</option>
+					<option value="20">20</option>
+				</select><span style="font-size:11px; padding-left: 1pt; padding-top: 0pt; padding-bottom: 0pt; padding-right: 4pt"> items per page</span>
+			</form>
+		</div>
+		</th>
+		</tr>
+	</thead>
+</table>
+
+<!-- Records Display table & Pages -->
+<div id="displayRecord"> 
+	<table id="xmlTable" class="data-grid">
+		<thead>
+		  <tr>
+			<th><b>SR No</b></th>
+			<th>SR Type</th>
+			<th>Account</th>
+			<th>Product Group</th>
+			<th>Category</th>
+			<th>Status</th>
+			<th>Description</th>
+			<th>Created</th>
+			<th>Updated</th>
+			<th>Severity</th>
+			<th>Discuss</th>
+			<th>Actions</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <!-- Placeholder for the fetched records to be displayed -->
+		</tbody>
+	</table>
+</div>
+
+
+<!-- Bottom pane in SR List screen -->
+
+<!-- View/Edit Canvas -->
+<table id="canvas" class="crud" style="display:none">
+    <thead>
+      <tr>
+        <th colspan="4"><span id="canvasHead"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+	  <tr>
+		<td>SR Number</td><td><span id="srNumber"></span></td>
+		<td>Severity</td><td><select id="severity">
+		  <option>1-Critical</option>
+		  <option>2-High</option>
+		  <option>3-Medium</option>
+		  <option>4-Low</option>
+		</select>
+		</td>		
+	  </tr>
+	  <tr>
+		<td>SR Type</td>
+		<td>
+		<select id="srType" disabled>
+		  <option>Inquiry</option>
+		  <option>Preventive Maintenance</option>
+		  <option>Troubleshooting</option>
+		</select>
+		</td>
+		<td>Status</td><td><select id="status">
+		  <option>Open</option>
+		  <option>Rejected</option>
+		  <option>Resolved</option>
+		  <option>Closed</option>
+		</select>
+		</td>		
+	  </tr>
+	  <tr>
+		<td>Account</td><td><select id="account">
+		<option>Northern California Cable Company</option>
+		<option>Satellite America</option>
+		<option>ViewTV</option>
+		<option></option>
+		</select>
+		</td>
+		<td>Description</td><td><input type="text" id="desc"  maxlength="40"/></td>
+	  </tr>
+	  <tr>
+		<td>Product Group</td><td><select id="pGroup">
+		<option>Desktops</option>
+		<option>Laptops</option>
+		<option>Linux Server</option>
+		<option>Services</option>
+		<option>Storage</option>
+		<option>Windows Server</option>
+		<option></option>
+		</select></td>
+		<td rowspan="4">Long Description</td>
+		<td rowspan="4"><textarea id="longDesc"></textarea></td>		
+	  </tr>
+	  <tr>
+		<td>Problem Category</td>
+		<td>
+		<select id="pCat">
+			<option>Customer Satisfaction</option>
+			<option>Delivery Issue</option>
+			<option>Deployment Issue</option>
+			<option>Individual User Issue</option>
+			<option>Inquiry</option>
+			<option>Product Issue</option>
+			<option>System Outage</option>		
+			<option></option>
+		</select>
+		</td>
+	  </tr>
+	<tr>
+		<td>Creation Date</td><td><span id="creation"></span></td>
+	</tr>
+	  <tr>
+		<td>Last Updated on</td><td><span id="lastUpdate"></span></td>
+	  </tr>
+	  <!-- <td><!-- <a href="#">Go to discussion</a></td> -->
+	  <tr>
+	  <td class="button_row" colspan="4"><button id="viewDisplay">Edit</button><button id="editDisplay">Update</button><span>  </span><button id="cancel">Cancel</button></td>
+	  </tr>
+    </tbody>
+</table>
+<!-- Discussion form -->
+<div id="discussSR">
+  <table id="discussTable" class="crud" style="display:none">
+    <thead>
+      <tr>
+        <th colspan="2"><span id="discussHead"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+	  <tr>
+		<td>Group</td>
+		<td>
+		<select id="discussGroup">
+		</select><span id="fetching">Fetching group information...</span>
+		</td>
+	  </tr>
+	  <tr>
+		<td>Topic Name</td><td><span id="discussSRprefix" style="display:none"></span><input type="text" id="discussTopic"/></td>
+	  </tr>
+	  <tr>
+		<td>Message</td><td><textarea id="discussMessage"></textarea></td>
+	  </tr>	  
+	  <tr>	  
+	  <td colspan="2" align="center">
+	  <button id="submitDiscussion">Post Message</button><span>  </span><button id="cancelDiscussion">Cancel</button>
+	  </td>
+	  </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- End of Bottom pane -->
+
+<!--Create Table, which has all the options enabled -->
+<div id="createRecord">
+  <table id="createTable" class="crud" style="display:none"> <!-- for testing, removed  -->
+    <thead>
+      <tr>
+        <th colspan="4"><span id="createHead"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+	  <tr> <!-- Possible SR Types in Siebel -->
+		<td>SR Type</td>
+		<td>
+		<select id="srType2">
+		  <option>Inquiry</option>
+		  <option>Preventive Maintenance</option>
+		  <option selected>Troubleshooting</option>
+		</select>
+		</td>
+		<td>Description</td><td><input type="text" id="desc2" maxlength="40"></input></td>
+	  </tr>
+	  <tr>
+		<td>Account</td><td><select id="account2">
+		<option selected>Northern California Cable Company</option>
+		<option>Satellite America</option>
+		<option>ViewTV</option>			
+		<option></option>
+		</select></td>
+		<td rowspan="4">Long Description</td><td rowspan="4"><textarea id="longDesc2"></textarea></td>
+	  </tr>
+	  <tr>
+		<td>Product Group</td><td><select id="pGroup2">
+			<option selected>Desktops</option>
+			<option>Laptops</option>
+			<option>Linux Server</option>
+			<option>Services</option>
+			<option>Storage</option>
+			<option>Windows Server</option>
+			<option></option>
+		</select></td>
+	  </tr>
+	  <tr>
+		<td>Problem Category</td><td><select id="pCat2">
+			<option>Customer Satisfaction</option>
+			<option>Delivery Issue</option>
+			<option>Deployment Issue</option>
+			<option selected>Individual User Issue</option>
+			<option>Inquiry</option>
+			<option>Product Issue</option>
+			<option>System Outage</option>
+			<option></option>
+		</select></td>
+	  </tr>
+	  <tr>
+		<td>Severity</td><td><select id="severity2">
+		  <option>1-Critical</option>
+		  <option>2-High</option>
+		  <option>3-Medium</option>
+		  <option selected>4-Low</option>
+		</select>
+		</td>
+	  </tr>	  
+	  <tr>
+	  <td colspan="4" align="center" class="button_row">
+	  
+	  <button id="submitCreate">Submit</button><span>  </span><button id="resetCreate">Reset</button><span>  </span><button id="cancelCreate">Cancel</button>
+	  </td>
+	  </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Refer SR to colleague -->
+<table class="crud" id="ReferPage" style="display:none">
+	<thead>
+	  <tr>
+		<th colspan="2">Refer Service Request to a Colleague</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr><td>To</td><td> <select id="referList"></select></td></tr>
+		<tr><td>Subject</td><td><input type="text" id="referSub"/></td></tr>
+		<tr><td>Message</td><td><textarea id="referMsg" rows="5"></textarea></td></tr>
+		<tr><td class="button_row" colspan="2"><button id="postMsg">Post Message</button><span>  </span><button id="cancelMsg">Cancel</button>
+		</td>
+		</tr>
+	</tbody>
+</table>
+
+<!--Information Messages -- Placeholder -->
+<table class="infoPager" width="100%">
+<tr>
+<td><div id="infoMsg"></div><div id="infoMsg2"></div><div id="infoMsg3"></div><div id="infoMsg4"></div><div id="infoMsg5"></div><div id="infoMsg5"></div><div id="infoMsg6"></div><div id="infoMsg7"></div><div id="infoMsg8"></div><div id="infoMsg9"></div><div id="infoMsg10"></div><div id="infoMsg11"></div></td>
+</tr>
+</table>
+<!--class="buttonStyle3"
+<div class="buttonSingle"></div>
+<div class="buttonRow"></div>
+-->
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jive.js"></script>
+<script type="text/javascript" src="javascripts/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery.tablesorter.pager.js"></script>
+<script type="text/javascript" src="javascripts/jquery.xml2json.js"></script>
+</body>
+</html>

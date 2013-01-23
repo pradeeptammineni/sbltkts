@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org" />
+<!--  <link rel="stylesheet" href="stylesheets/reset.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="stylesheets/jive.css" type="text/css" media="screen" />
+-->
+<!--Jive.css-->
+<style type="text/css">
+
+/*Reset*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ font: inherit;
+ vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+ display: block;
+}
+body {
+ line-height: 1;
+}
+ol, ul {
+ list-style: none;
+}
+blockquote, q {
+ quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+ content: '';
+ content: none;
+}
+table {
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+/*Reset Ends*/
+
+/*Jive style*/
+
+html, body { font-family : "Helvetica Neue",Helvetica,Arial,sans-serif; font-size:7.5pt}
+
+a:link, a:visited { color:#658AC3}
+a:hover {text-decoration:none}
+
+/* tables */ /* add to table - table-layout:fixed; */
+table.data-grid, table.crud, table.banner {  border:1px solid #222; margin:20px; box-shadow:0 0 5px #888}
+table.data-grid {width:90%}
+table.data-grid thead tr th, table.crud thead tr th, table.banner thead tr th{ color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold}
+table.data-grid tbody tr td{ padding:2px; border-top:1px solid #222; cursor:default; text-align:left; overflow: hidden; position:relative;} /* for overflow -- text-overflow:ellipsis; white-space:nowrap; */
+table.data-grid tbody tr:hover { background:#FFFF00}
+table.data-grid tbody tr.active { background:#FFFF00; color:black}
+table.data-grid tbody tr.active a:link, table.data-grid tbody tr.active a:visited { color:#658AC3}
+table.crud tbody td { padding:5px; vertical-align:top}
+table.crud tbody td.button_row{ 
+text-align:center; vertical-align:center; margin: 1em 0; padding:0.3em;}
+table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
+	background-color: #12378B;
+	border: 1px solid #222;
+}
+
+table.data-grid thead tr .header {
+	background-image: url(images/bg.png);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+
+td.noDiscuss {
+	background-image: url(images/discuss_no.png);
+}
+td.Discuss {
+	background-image: url(images/discuss_yes.png);
+}
+
+td.updateDays{
+	background-image: url(images/updatedays.png);
+}
+
+td.updateMins{
+	background-image: url(images/updatemins.png);
+}
+
+td.infoSR{
+	background-image: url(images/info.png);
+}
+
+td.Severity1{
+	background-image: url(images/1critical.png);
+}
+td.Severity2{
+	background-image: url(images/2high.png);
+}
+td.Severity3{
+	background-image: url(images/3medium.png);
+}
+td.Severity4{
+	background-image: url(images/4low.png);
+}
+
+td.referSR{
+	background-image: url(images/refer.png);
+}
+
+.button
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 10px;
+	padding-left: 10px;
+	
+	font-size: 9pt;
+	font-weight:bold;
+	text-decoration: none;
+	color: white;
+	background-color: #12378B;
+	
+	text-align: center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+}
+
+.button:hover
+{
+background-color: #658AC3;
+}
+
+textarea.referMsg
+{
+	height:100px;
+}
+input, textarea, select { width:300px; padding:5px;}
+
+td.noDiscuss, td.Discuss, td.updateDays, td.updateMins, td.infoSR, td.Severity1, td.Severity2, td.Severity3, td.Severity4, td.referSR
+{
+	background-repeat: no-repeat;
+	background-position: center center;
+    position:relative; /*this is the key*/
+    z-index:24;
+	
+	width: 17px;
+} /* padding: 2px 3px; */
+td.noDiscuss:hover, td.Discuss:hover, td.updateDays:hover, td.updateMins:hover, td.infoSR:hover, td.Severity1:hover, td.Severity2:hover, td.Severity3:hover, td.Severity4:hover, td.referSR
+{
+	z-index:25;
+}
+td span {
+	display:none;
+}
+
+td:hover span {
+    display:block;
+    position:absolute; top:80px; left:100px; width:150px;
+    border:1px solid #FFF;
+    background-color:#12378B; color:#FFF;
+    text-align: left;
+	/* outline radius for mozilla/firefox only */
+	-moz-box-shadow:0 0 10px #000;
+	-webkit-box-shadow:0 0 10px #000;	
+}
+
+a:link, a:visited { color:black}
+a:hover {text-decoration:none}
+
+a.viewmore:link, a.viewmore:visited
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 10px;
+	padding-left: 10px;
+	
+	font-size: 9pt;
+	font-weight:bold;
+	text-decoration: none;
+	color: white;
+	background-color: #12378B;
+	
+	text-align: center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+}
+
+a.viewmore:hover
+{
+background-color: #658AC3;
+}
+
+#footer{
+	clear: both;
+	height: 28px;
+	width: 100%;
+	border-width: 1px 0 0 0;
+	border-style: solid;
+	border-color: #658AC3;
+	vertical-align: middle;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	bottom: 0px;
+	font-size: 9px;
+	font-weight: bold;
+	text-align:center;
+	font-family: Verdana, Geneva, Arial, sans-serif
+} 
+
+/* Jive Style ends */
+
+/*New Home */
+* {
+  margin: 0;
+  padding: 0
+}
+
+.container {
+  background-color: #12378B;
+  width: 380px;
+  border: 1px solid #000;
+}
+
+* html .container {
+  width: 383px;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+
+.header ul {
+  list-style: none
+}
+
+.header ul li {
+  width: 90px;
+  border-left: 1px solid #000;
+  float: left;
+  font-weight: bold;
+  padding-left: 2px;
+}
+
+* html .header ul li {
+  width: 93px;
+}
+
+.data {
+  width: 90px;
+  overflow:hidden;
+  text-overflow:ellipsis; 
+  white-space:nowrap;
+  float: left;
+  padding-left: 2px;
+}
+
+* html .data {
+  width: 93px;
+}
+
+.rowodd,.roweven {
+  position: relative;
+  width: 380px;
+  border-top: 1px solid #000;
+  background-color: #E8E8E8;
+}
+
+.roweven {
+  background-color: #D1DCE9;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  display: inline-block;
+}
+/*New Home Ends */
+</style>
+
+<title>My Siebel Service Requests - Home</title>
+</head>
+<body>
+
+<div id="HomeView">
+  <table id="xmlTable" class="data-grid">
+    <thead>
+      <tr>
+		<th>Account</th>
+		<th>Group</th>
+		<th>Category</th>		
+		<th colspan="5">Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Placeholder for the fetched records to be displayed -->
+    </tbody>
+  </table>
+   <!-- <div align="center"><a onclick="gadgets.views.requestNavigateTo('canvas');return false;" href="#canvas" class="viewmore" title="Click to open detail canvas view.">View Detail Canvas</a></div> -->
+</div>
+
+<table class="crud" id="ReferPage" width="90%" style="display:none">
+	<thead>
+	  <tr>
+		<th colspan="2">Refer Service Request to a Colleague</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr><td>To</td><td> <select id="referList"></select></td></tr>
+		<tr><td>Subject</td><td><input type="text" id="referSub"/></td></tr>
+		<tr><td>Message</td><td><textarea id="referMsg" rows="5"></textarea></td></tr>
+		<tr><td class="button_row" colspan="2"><button id="postMsg">Post Message</button><span>  </span><button id="cancelMsg">Cancel</button>
+		</td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="footer">&copy; Accenture 2011</div> 
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.tablesorter.min.js"></script> <!--Should be removed once Siebel is set up to send SRs sorted by Updated Date-->
+  <script type="text/javascript" src="javascripts/jquery.xml2json.js"></script>
+  <script type="text/javascript">
+	gadgets.util.registerOnLoadHandler(init);
+	var viewer;
+	var srNumberRefer = "";
+ 	function init() {
+		registerEvents();
+		viewer = opensocial.data.getDataContext().getDataSet('viewer');
+	};
+	function registerEvents() {
+		var groupID = "@friends";
+		//console.log("Selecting people for groupID '" + groupID + "'");
+		osapi.people.get({
+		userId : '@me',
+		groupId : groupID,
+		fields : 'id,name,thumbnail_url,jive_enabled'
+		}).execute(function(response) {
+			//console.log("Select response is " + JSON.stringify(response));
+			var html = "";
+			if (response.list) {
+				$.each(response.list, function(index, user) {
+					if (user.jive_enabled) {html += "<option value=\""+user.id+"\">" + user.displayName + "</option>";}
+				});
+			}
+			else {
+				var user = response;
+				if (user.jive_enabled) { html += "<option value=\""+user.id+"\">" + user.displayName + "</option>"; }
+			}
+			$("#referList").html("").html(html);
+		});
+	};	
+    function newPost(){
+	//var tr = $(this).closest('tr'), id = tr[0].id;
+			var PostID=$('#referList').val();
+			var Msg = $('#referMsg').val();
+			var subject = $('#referSub').val();
+			var msg = new gadgets.MiniMessage();
+			//console.log("Posting to:"+PostID)
+	  		  var params = {
+		      "userId":"@viewer",
+		      "activity":{
+		          "title":"Notification (Siebel SRs)",
+		          "body":"{@actor} referred to {@target} about \""+subject+"\"",
+		          "verb":["POST"],
+		          "object":{
+						"id":"badge/103",
+						"summary":"<b>"+subject+"</b><br/>"+Msg,
+						"title":"Subject:"+subject,
+						"objectType":"badge"
+		          },
+		          "target":{"id":"urn:jiveObject:user/"+PostID}        
+		       },
+		       "groupId":"@self"
+		    }
+			osapi.activities.create(params).execute(function(response) {
+				if (!response.error) {	
+					msg.createTimerMessage("<div style='text-align:center;'>Notification posted successfully.</div>", 4);
+					$('#HomeView').show();
+					$('#ReferPage').hide();
+					$('#referMsg').val("");
+					$('#referSub').val("");	
+					}
+				else {
+					msg.createTimerMessage("<div style='text-align:center;'>Unable to post. Please try again. <br />Error: <i>"+response.error.message+"</i> </div>", 4);
+					}
+				});
+	};
+	
+	function cancelPost() {
+			$('#referMsg').val("");
+			$('#referSub').val("");
+			$('#HomeView').show();
+			$('#ReferPage').hide();	
+	};
+  $(document).ready(function () {
+	
+	$('#HomeView').show();
+	$('#ReferPage').hide();
+	init();
+	var xmlDoc = '';	
+	osapi.jive.core.users.get({id: '@viewer'}).execute(function(response) {
+		if (!response.error) {
+			var jiveUser = response.data;
+			var idUser = jiveUser.username;
+			var idUserSiebel=idUser.toUpperCase(); //Siebel currently allows only names in uppercase!
+			var DateImage = "images/updatedays.png";
+			var xmlInput = '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tro="http://siebel.com/TroubleTicket" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"><soapenv:Header/><soapenv:Body><tro:GetTroubleTicket soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SiebelMessage xsi:type="ws:ListOfWsTroubleTicketInterfaceTopElmt" xmlns:ws="http://www.siebel.com/xml/WS Trouble Ticket"><ListOfWsTroubleTicketInterface xsi:type="ws:ListOfWsTroubleTicketInterface"><TroubleTicket xsi:type="ws:ArrayOfTroubleTicket" soapenc:arrayType="ws:TroubleTicket[]"/><ws:TroubleTicket><ws:Owner>'+idUserSiebel+'</ws:Owner><ws:Status>Open</ws:Status></ws:TroubleTicket></ListOfWsTroubleTicketInterface></SiebelMessage></tro:GetTroubleTicket></soapenv:Body></soapenv:Envelope>'; // Normal XML text, not URI encoded
+		osapi.jive.connects.get({
+		  'alias' : 'accenture',
+		  'format' : 'text',
+		  'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']},
+		  'params' : { 'SWEExtData' : xmlInput } // Jive Connects will URI encode values for you
+		}).execute(function(response) {
+			if (!response.error) {
+						xmlDoc = response.content;
+						var json = $.xml2json(xmlDoc);
+						try 
+						{
+							var myXML = xmlDoc;
+							var xmlDoc = $.parseXML(myXML);
+							var dummyParent = '';
+							$myXML = $(xmlDoc);
+							$dummyParent = $myXML.find('TroubleTicket');
+							$returnSR = $dummyParent.find('TroubleTicket');
+							var srNumber, srType, pCat, pGroup, Account, Status, Desc, openDate, upDate, srDisc, Disc, row, severity = '';
+							var j=0;
+							$returnSR.each(function () {
+									if(j<15)
+									{
+										srNumber = ($(this).children('TicketID').text());
+										Desc = ($(this).children('Abstract').text());
+										Status = ($(this).children('Status').text());
+
+										Account = ($(this).children('Account').text());
+										upDate = ($(this).children('LastUpdated').text());
+										Disc = ($(this).children('AgentComments').text());
+										pGroup = ($(this).children('Area').text());
+										pCat = ($(this).children('Sub-Area').text());
+										severity = ($(this).children('Severity').text());
+										
+										upDate = DateFormatFunc(upDate);
+										if (upDate.search(/day/i) != -1)
+										{
+											upDate ='<td class="updateDays"><span>Updated '+upDate+'</span></td>'; //Image for Days ago
+										}
+										else if (upDate.search(/hour/i) != -1)
+										{
+											upDate ='<td class="updateMins"><span>Updated '+upDate+'</span></td>'; //Image for Hours ago
+										}
+										else
+										{
+											upDate ='<td class="updateMins"><span>Updated '+upDate+'</span></td>'; //Image for Minutes/Seconds ago
+										}
+										//console.log(j+":"+upDate);
+										if (Disc=='')
+										{
+										srDisc = '<td class="noDiscuss"><span>No Discussion Exists</span></td>'; //Discussion absent image									
+										}
+										else
+										{
+										srDisc = '<td class="Discuss" onclick="window.open(\''+Disc+'\')" style="cursor:hand;"><span>Discussion Exists. Click on icon to open.</span></td>'; //Discussion present image
+										}
+
+										if (severity == '1-Critical')
+										{
+										severity = '<td class="Severity1"><span>Severity: '+severity+'</span></td>';
+										}
+										else if (severity == '2-High')
+										{
+										severity = '<td class="Severity2"><span>Severity: '+severity+'</span></td>';
+										}
+										else if (severity == '3-Medium')
+										{
+										severity = '<td class="Severity3"><span>Severity: '+severity+'</span></td>';
+										}
+										else
+										{
+										severity = '<td class="Severity4"><span>Severity: '+severity+'</span></td>';
+										}
+										
+										var infoSR = '<td class="infoSR"><span>SR Number: '+srNumber+' | Status: '+Status+' | Short Description: '+Desc+'</span></td>';
+										
+										//onclick="javascript:referSRTo('+srNumber+');"
+										var refer = '<td class="referSR"><span>Refer this SR to a colleague</span></td>';
+										
+										//If there is any special character coming from Siebel, retain it - avoid JavaScript from performing Mathematical operations and like
+										for (i=0;i<=(srNumber.length-1);i++)
+										{
+											srNumber.charCodeAt(i);
+										}							
+										row = row + 
+												'<tr id="'+srNumber+'">' + '<td>' + Account + '</td>' + '<td>' + pGroup + '</td>' +
+												'<td>' + pCat + '</td>' + infoSR  + upDate + severity +	srDisc + refer +'</tr>';
+										j++;
+									}											
+							});		
+							$("table#xmlTable tbody").append(row);
+						} catch (err) {
+							$("table#xmlTable tbody").append('<tr align="center"><td colspan="8">Unable to fetch records now.</td></tr>');
+						}
+						}
+						else
+						{
+							if (response.error.message === 'Connection reset')
+							{
+							window.location.reload();
+							}
+							else
+							{
+							$("table#xmlTable tbody").append('<tr align="center"><td colspan="8">Unable to fetch records now. Error:'+response.error.message+'</td></tr>');
+							}
+						}	
+				});
+		}
+		else
+		{
+		idUser = "JIVEUSER";
+		}
+	});
+	//Refer - Submit
+	$('button#postMsg').live('click', function(){
+			var PostID=$('#referList').val();
+			var Msg = $('#referMsg').val();
+			var subject = $('#referSub').val();
+			var msg = new gadgets.MiniMessage();
+			//console.log("Posting to:"+PostID)
+	  		  var params = {
+		      "userId":"@viewer",
+		      "activity":{
+		          "title":"Notification (Siebel SRs)",
+		          "body":"{@actor} referred to {@target} about \"Service Request# "+srNumberRefer+"\"",
+		          "verb":["POST"],
+		          "object":{
+						"id":"badge/103",
+						"summary":"<b>"+subject+"</b><br/>"+Msg,
+						"title":"Subject:"+subject,
+						"objectType":"badge"
+		          },
+		          "target":{"id":"urn:jiveObject:user/"+PostID}        
+		       },
+		       "groupId":"@self"
+		    }
+			osapi.activities.create(params).execute(function(response) {
+				if (!response.error) {	
+					msg.createTimerMessage("<div style='text-align:center;'>Notification posted successfully.</div>", 4);
+					$('#HomeView').show();
+					$('#ReferPage').hide();
+					$('#referMsg').val("");
+					$('#referSub').val("");	
+					}
+				else {
+					msg.createTimerMessage("<div style='text-align:center;'>Unable to post. Please try again. <br/>Error: <i>"+response.error.message+"</i> </div>", 4);
+					}
+				});
+	});
+
+	//Cancel Message - Refer
+	$('button#cancelMsg').live('click', function(){	
+			$('#referMsg').val("");
+			$('#referSub').val("");
+			$('#HomeView').show();
+			$('#ReferPage').hide();				
+	});	
+	function DateFormatFunc(InputDate)
+	{
+		var DtFmt = new Date(InputDate.substring(6,10),InputDate.substring(0,2)-1,InputDate.substring(3,5),InputDate.substring(11,13),InputDate.substring(14,16),InputDate.substring(17,19)).valueOf();
+		var d = new Date();
+		var DtCurr = new Date(d.getFullYear(),d.getMonth(),d.getDate(),d.getHours(),d.getMinutes(),d.getSeconds()).valueOf();
+		var timediff = Math.abs(DtCurr - DtFmt);
+		var days = Math.floor(timediff / (1000 * 60 * 60 * 24)); 
+		timediff -= days * (1000 * 60 * 60 * 24);
+		var hours = Math.floor(timediff / (1000 * 60 * 60)); 
+		timediff -= hours * (1000 * 60 * 60);
+		hours = hours - 12; //as it is IST now.
+		var mins = Math.floor(timediff / (1000 * 60)); 
+		timediff -= mins * (1000 * 60);
+		mins = mins - 30; //IST correction
+		var secs = Math.floor(timediff / 1000); 
+		timediff -= secs * 1000;
+		var dtfmtDate = days +":" + hours +":"+mins +":"+secs
+		if (days > 0)
+		{
+			if (days == 1)
+			{ return "1 day ago";}
+			else
+			{ return days+" days ago"; }
+		}
+		else if (days === 0)
+		{
+			if (hours > 0)
+			{	
+				if (hours == 1)
+				{return "1 hour ago";}
+				else
+				{return hours+" hours ago"; }
+			}
+			else if (mins > 0)
+			{	
+				if (mins == 1)
+				{ return "1 min ago"; }
+				else
+				{return mins+" mins ago"; }
+			}
+			else
+			{	return secs+" secs ago"; }
+		}
+		return (dtfmtDate);
+	};
+	
+	$("td.referSR").live('click', function(){
+	var tr = $(this).closest('tr'), id = tr[0].id;
+	srNumberRefer = id;
+	//console.log("ID:"+id);
+	if($('#referList').val()=="")
+	{ init();}
+		$('#HomeView').hide();
+		$('#ReferPage').show();	
+	});
+});
+
+</script>
+</body>
+</html>
