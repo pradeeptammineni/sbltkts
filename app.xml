@@ -12,7 +12,7 @@
     <Require feature="jquery-1.6" />
 	<Require feature="opensocial-1.0"/>
     <Require feature="jive-connects-v1">
-            <Param name="alias:accenture|title:Accenture Service">jive:service//oracle.com/siebel/api?version=1</Param>
+            <Param name="alias:accenture|title:Accenture Siebel - 1">jive:service//oracle.com/siebel/api?version=1</Param>
     </Require>
     <Require feature="osapi"/>
     <Require feature="settitle"/>
