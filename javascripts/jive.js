@@ -81,7 +81,7 @@ $(document).ready(function () {
 		  'params' : { 'SWEExtData' : xmlInput } // Jive Connects will URI encode values for you
 		}).execute(function(response) {
 				if (!response.error) {
-				//console.log(response.content);
+				console.log(response.content);
 				xmlDoc = response.content;
 				try 
 				{
